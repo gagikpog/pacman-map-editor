@@ -1,8 +1,8 @@
 import { createContext, useCallback, useContext, useMemo, useState } from 'react';
-import { IDataValue } from './constants';
+import { DataValue } from './constants';
 
 export interface IModel {
-    data: IDataValue[][];
+    data: DataValue[][];
     width: number;
     height: number;
     loadData(strData: string):  void;
@@ -13,23 +13,17 @@ export const useData = (): IModel => useContext<IModel>(DataContext);
 
 export const Provider = ({children}: IProps) => {
 
-    const [data, setData] = useState<IDataValue[][]>([]);
-    const [width, setWidth] = useState(0);
-    const [height, setHeight] = useState(0);
-
+    const [data, setData] = useState<DataValue[][]>([]);
 
     const loadData = useCallback((strData: string): void => {
-        const [size, ...rows] = strData.split('\n') || [];
-        const [width, height] = size ? size.split(' ') : [];
-        const data = rows.map((row): IDataValue[] => row.split('') as IDataValue[]);
+        const [, ...rows] = strData.split('\n') || [];
+        const data = rows.map((row): DataValue[] => row.trim().split('') as DataValue[]);
         setData(data);
-        setWidth(Number(width));
-        setHeight(Number(height));
     }, []);
 
     const value = useMemo<IModel>(() => {
-        return { height, width, data, loadData }
-    }, [height, width, data, loadData]);
+        return { height: data.length, width: data[0]?.length || 0, data, loadData };
+    }, [data, loadData]);
 
     return (
         <DataContext.Provider value={value}>

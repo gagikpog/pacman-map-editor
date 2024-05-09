@@ -1,11 +1,12 @@
 import { useRef } from 'react';
 import { useData } from '../dataContext';
-
-const ITEM_SIZE = 10;
+import { ITEM_SIZE } from '../constants';
+import { useDraw } from '../hooks/draw';
 
 export const Editor = (props: IProps) => {
     const context = useData();
-    const canvasRef = useRef(null);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+    useDraw(canvasRef);
 
     return (
         <canvas
