@@ -1,5 +1,6 @@
 import { useCallback, useRef } from 'react'
 import { useData } from '../dataContext';
+import { Icon } from '../components/icon';
 
 export const LoadButton = () => {
 
@@ -26,7 +27,7 @@ export const LoadButton = () => {
     return (
         <>
             <input type="file" ref={inputRef} className="tw-hidden" accept=".lmp" onChange={loadHandler}/>
-            <button onClick={clickHandler} className="text-3xl">import</button>
+            <Icon onClick={clickHandler} icon='import' />
         </>
     );
 };

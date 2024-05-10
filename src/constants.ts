@@ -17,7 +17,7 @@ export const ITEMS_COLOR = {
     [DataValue.Wall]: '#000',
     [DataValue.Track]: '#555',
     [DataValue.Bonus]: '#ff0',
-    [DataValue.Score]: '#0f0',
+    [DataValue.Score]: '#fff',
     [DataValue.PrivateTrack]: '#f00',
     [DataValue.Respawn]: '#00f'
 };
