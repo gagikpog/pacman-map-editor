@@ -9,6 +9,7 @@ export interface IModel {
     setBrush: Dispatch<SetStateAction<DataValue>>;
     loadData(strData: string):  void;
     forEach(func: TIterationFunc): void;
+    drawPixel(startX: number, startY: number, value: DataValue[][]): void;
 }
 
 const DataContext = createContext<IModel>({} as IModel);
@@ -31,9 +32,28 @@ export const Provider = ({children}: IProps) => {
         });
     }, [data]);
 
+    const drawPixel = useCallback((startX: number, startY: number, value: DataValue[][]) => {
+        setData((prevData) => {
+            let changed = false;
+
+            for (let y = 0; y < value.length; y++) {
+                for (let x = 0; x < value[y].length; x++) {
+                    const posX = startX + x;
+                    const posY = startY - y;
+                    if (prevData[posY]?.[posX] !== undefined && prevData[posY][posX] !== value[y][x]) {
+                        prevData[posY][posX] = value[y][x];
+                        changed = true;
+                    }
+                }
+            }
+
+            return changed ? [...prevData] : prevData;
+        });
+    }, []);
+
     const value = useMemo<IModel>(() => {
-        return { height: data.length, width: data[0]?.length || 0, data, brush, loadData, forEach, setBrush };
-    }, [data, brush, loadData, forEach, setBrush]);
+        return { height: data.length, width: data[0]?.length || 0, data, brush, loadData, forEach, setBrush, drawPixel };
+    }, [data, brush, loadData, forEach, setBrush, drawPixel]);
 
     return (
         <DataContext.Provider value={value}>
