@@ -2,11 +2,11 @@ import { MouseEvent, useCallback, useEffect, useRef } from 'react';
 import { useData } from '../dataContext';
 import { DataValue, ITEM_SIZE } from '../constants';
 
-function convertPosition(event: MouseEvent<HTMLCanvasElement>) {
+function convertPosition(event: MouseEvent<HTMLCanvasElement>, brushSize: number) {
     const target = event.target as HTMLCanvasElement;
 
-    const left = event.clientX - target.offsetLeft;
-    const top = event.clientY - target.offsetTop;
+    const left = event.clientX - target.offsetLeft - (brushSize - 1) * ITEM_SIZE / 2;
+    const top = event.clientY - target.offsetTop + (brushSize - 1) * ITEM_SIZE / 2;
     const x = Math.floor(left / ITEM_SIZE);
     const y = Math.floor(top / ITEM_SIZE);
 
@@ -33,7 +33,7 @@ export function useEdit() {
 
     const onMouseDown = useCallback((event: MouseEvent<HTMLCanvasElement>) => {
         mousePressed.current = true;
-        const [x, y]= convertPosition(event);
+        const [x, y]= convertPosition(event, brushRef.current.length);
         drawPixel(x, y, brushRef.current);
     }, [drawPixel, brushRef]);
 
@@ -42,7 +42,7 @@ export function useEdit() {
     }, []);
 
     const onMouseMove = useCallback((event: MouseEvent<HTMLCanvasElement>) => {
-        const [x, y]= convertPosition(event);
+        const [x, y]= convertPosition(event, brushRef.current.length);
         if (mousePressed.current) {
             drawPixel(x, y, brushRef.current);
         }
