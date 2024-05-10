@@ -16,10 +16,10 @@ function convertPosition(event: MouseEvent<HTMLCanvasElement>) {
 const BRUSHES = new Map([
     [
         DataValue.Track, [
-            [DataValue.Empty,DataValue.Empty,DataValue.Empty,DataValue.Empty],
-            [DataValue.Empty,DataValue.Empty,DataValue.Empty,DataValue.Empty],
-            [DataValue.Empty,DataValue.Empty,DataValue.Empty,DataValue.Empty],
-            [DataValue.Track,DataValue.Empty,DataValue.Empty,DataValue.Empty]
+            [DataValue.Track,DataValue.Track,DataValue.Track,DataValue.Track],
+            [DataValue.Track,DataValue.Track,DataValue.Track,DataValue.Track],
+            [DataValue.Track,DataValue.Track,DataValue.Track,DataValue.Track],
+            [DataValue.Track,DataValue.Track,DataValue.Track,DataValue.Track]
         ]
     ]
 ])
@@ -45,7 +45,6 @@ export function useEdit() {
         const [x, y]= convertPosition(event);
         if (mousePressed.current) {
             drawPixel(x, y, brushRef.current);
-            console.log('canvas move', event);
         }
 
         cursorRef.current = { x, y, w: brushRef.current[0].length, h: brushRef.current.length };

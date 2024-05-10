@@ -2,7 +2,7 @@ import { useCallback, useRef } from 'react'
 import { useData } from '../dataContext';
 import { Icon } from '../components/icon';
 
-export const LoadButton = () => {
+export const LoadButton = (props: IProps) => {
 
     const context = useData();
     const inputRef =  useRef<HTMLInputElement>(null);
@@ -27,7 +27,7 @@ export const LoadButton = () => {
     return (
         <>
             <input type="file" ref={inputRef} className="tw-hidden" accept=".lmp" onChange={loadHandler}/>
-            <Icon onClick={clickHandler} icon='import' />
+            <Icon className={props.className} onClick={clickHandler} icon='import' />
         </>
     );
 };
