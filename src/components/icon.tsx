@@ -1,10 +1,11 @@
 interface IIconProps extends IProps {
     icon: string;
     selected?: boolean;
+    title?: string;
     onClick?: () => void;
 }
 
-export const Icon = ({icon, selected, onClick, className}: IIconProps) => {
+export const Icon = ({icon, selected, onClick, className, title}: IIconProps) => {
     return (
         <img
             src={`/assets/${icon}.jpg`}
@@ -12,6 +13,7 @@ export const Icon = ({icon, selected, onClick, className}: IIconProps) => {
             alt={icon}
             width={16}
             height={16}
+            title={title}
             onClick={onClick}
         />
     );

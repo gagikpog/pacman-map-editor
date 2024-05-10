@@ -32,5 +32,6 @@ export const drawMap: TDrawMap = {
     [DataValue.Bonus]: circle(ITEMS_COLOR[DataValue.Bonus]),
     [DataValue.Score]: circle(ITEMS_COLOR[DataValue.Score]),
     [DataValue.PrivateTrack]: rect(ITEMS_COLOR[DataValue.PrivateTrack]),
-    [DataValue.Respawn]: rect(ITEMS_COLOR[DataValue.Respawn])
+    [DataValue.Respawn]: circle(ITEMS_COLOR[DataValue.Respawn]),
+    [DataValue.Hidden]: pass(ITEMS_COLOR[DataValue.Hidden])
 };

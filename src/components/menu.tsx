@@ -4,7 +4,7 @@ import { Brushes } from './brushes';
 
 export const Menu = (props: IProps) => {
     return (
-        <div className={`${props.className} tw-flex tw-p-2 tw-items-center`}>
+        <div className={`${props.className || ''} tw-flex tw-p-2 tw-items-center`}>
             <SaveButton/>
             <LoadButton className='tw-ml-1'/>
             <Brushes className='tw-ml-4'/>

@@ -16,13 +16,34 @@ function convertPosition(event: MouseEvent<HTMLCanvasElement>, brushSize: number
 const BRUSHES = new Map([
     [
         DataValue.Track, [
-            [DataValue.Track,DataValue.Track,DataValue.Track,DataValue.Track],
-            [DataValue.Track,DataValue.Track,DataValue.Track,DataValue.Track],
-            [DataValue.Track,DataValue.Track,DataValue.Track,DataValue.Track],
-            [DataValue.Track,DataValue.Track,DataValue.Track,DataValue.Track]
+            [DataValue.Track, DataValue.Track, DataValue.Track, DataValue.Track],
+            [DataValue.Track, DataValue.Track, DataValue.Track, DataValue.Track],
+            [DataValue.Track, DataValue.Track, DataValue.Track, DataValue.Track],
+            [DataValue.Track, DataValue.Track, DataValue.Track, DataValue.Track]
+        ]
+    ], [
+        DataValue.Bonus, [
+            [DataValue.Bonus, DataValue.Hidden, DataValue.Hidden, DataValue.Hidden],
+            [DataValue.Hidden, DataValue.Hidden, DataValue.Hidden, DataValue.Hidden],
+            [DataValue.Hidden, DataValue.Hidden, DataValue.Hidden, DataValue.Hidden],
+            [DataValue.Hidden, DataValue.Hidden, DataValue.Hidden, DataValue.Hidden]
+        ]
+    ], [
+        DataValue.Score, [
+            [DataValue.Score, DataValue.Hidden, DataValue.Hidden, DataValue.Hidden],
+            [DataValue.Hidden, DataValue.Hidden, DataValue.Hidden, DataValue.Hidden],
+            [DataValue.Hidden, DataValue.Hidden, DataValue.Hidden, DataValue.Hidden],
+            [DataValue.Hidden, DataValue.Hidden, DataValue.Hidden, DataValue.Hidden]
+        ]
+    ], [
+        DataValue.Respawn, [
+            [DataValue.Respawn, DataValue.Hidden, DataValue.Hidden, DataValue.Hidden],
+            [DataValue.Hidden, DataValue.Hidden, DataValue.Hidden, DataValue.Hidden],
+            [DataValue.Hidden, DataValue.Hidden, DataValue.Hidden, DataValue.Hidden],
+            [DataValue.Hidden, DataValue.Hidden, DataValue.Hidden, DataValue.Hidden]
         ]
     ]
-])
+]);
 
 export function useEdit() {
 

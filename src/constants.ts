@@ -1,5 +1,4 @@
-export const ITEM_SIZE = 10;
-
+export const ITEM_SIZE = 12;
 
 export enum DataValue {
     Empty = '0',
@@ -8,7 +7,8 @@ export enum DataValue {
     Bonus = '3',
     Score = '4',
     PrivateTrack = '5',
-    Respawn = '6'
+    Respawn = '6',
+    Hidden = '-1'
 }
 
 
@@ -19,5 +19,6 @@ export const ITEMS_COLOR = {
     [DataValue.Bonus]: '#ff0',
     [DataValue.Score]: '#fff',
     [DataValue.PrivateTrack]: '#f00',
-    [DataValue.Respawn]: '#00f'
+    [DataValue.Respawn]: '#00f',
+    [DataValue.Hidden]: '#0ff'
 };

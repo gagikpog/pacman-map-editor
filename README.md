@@ -1,1 +1,1 @@
-# PackMan map editor
+# PacMan map editor

@@ -27,7 +27,7 @@ export const LoadButton = (props: IProps) => {
     return (
         <>
             <input type="file" ref={inputRef} className="tw-hidden" accept=".lmp" onChange={loadHandler}/>
-            <Icon className={props.className} onClick={clickHandler} icon='import' />
+            <Icon className={props.className} onClick={clickHandler} icon='import' title='load'/>
         </>
     );
 };

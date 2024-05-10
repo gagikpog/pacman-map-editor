@@ -33,6 +33,6 @@ export const SaveButton = (props: IProps) => {
     }, [context]);
 
     return (
-        <Icon className={props.className} onClick={clickHandler} icon='save' />
+        <Icon className={props.className} onClick={clickHandler} icon='save' title='save' />
     );
 };

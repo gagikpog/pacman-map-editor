@@ -22,7 +22,15 @@ export const Provider = ({children}: IProps) => {
 
     const loadData = useCallback((strData: string): void => {
         const [, ...rows] = strData.split('\n') || [];
-        const data = rows.map((row): DataValue[] => row.trim().split('') as DataValue[]);
+        const data = rows.map((row): DataValue[] => row.trim().split('').map((value): DataValue => {
+            switch (value) {
+                case DataValue.Track:
+                case DataValue.Empty:
+                    return DataValue.Track
+                default:
+                    return value as DataValue;
+            }
+        }));
         setData(data);
     }, []);
 
@@ -40,7 +48,7 @@ export const Provider = ({children}: IProps) => {
                 for (let x = 0; x < value[y].length; x++) {
                     const posX = startX + x;
                     const posY = startY - y;
-                    if (prevData[posY]?.[posX] !== undefined && prevData[posY][posX] !== value[y][x]) {
+                    if (prevData[posY]?.[posX] !== undefined && value[y][x] !== DataValue.Hidden && prevData[posY][posX] !== value[y][x]) {
                         prevData[posY][posX] = value[y][x];
                         changed = true;
                     }
