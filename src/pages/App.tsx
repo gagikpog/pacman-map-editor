@@ -7,9 +7,11 @@ export default function App() {
     return (
         <>
             <Header/>
-            <main className='tw-flex tw-flex-col tw-h-full tw-flex-1'>
+            <main className='tw-flex tw-h-full tw-flex-1 tw-min-h-0'>
                 <Menu/>
-                <Editor className='tw-m-auto' />
+                <div className='tw-flex tw-w-full tw-h-full tw-overflow-y-auto'>
+                    <Editor className='tw-m-auto' />
+                </div>
             </main>
         </>
     );
