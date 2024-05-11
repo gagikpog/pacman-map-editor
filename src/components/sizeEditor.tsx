@@ -20,7 +20,7 @@ export const SizeEditor = ({ onSubmit, className }: ISizeEditorProps) => {
         <form action="" onSubmit={submitHandler} className={`${className || ''} tw-grid tw-grid-cols-2 tw-gap-1`}>
             <div>Width</div>
             <div>
-                <input className="tw-p-1 tw-rounded tw-w-14" min={10} max={70} maxLength={2} name="width" defaultValue={64} type="number" />
+                <input className="tw-p-1 tw-rounded tw-w-14" min={10} max={70} maxLength={2} name="width" defaultValue={58} type="number" />
                 <span className="tw-p-1"></span>
             </div>
             <div>Height</div>

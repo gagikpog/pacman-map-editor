@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, createContext, useCallback, useContext, useMe
 import { DataValue } from './constants';
 import { formatMapFromImport } from './normalize/import';
 import { confirmation } from './confirm';
+import { useDataHistory } from './hooks/useDataHistory';
 type TIterationFunc = (row: number, col: number, value: DataValue) => void;
 export interface IModel {
     data: DataValue[][];
@@ -20,7 +21,7 @@ export const useData = (): IModel => useContext<IModel>(DataContext);
 
 export const Provider = ({children}: IProps) => {
 
-    const [data, setData] = useState<DataValue[][]>([]);
+    const [data, setData] = useDataHistory();
     const [brush, setBrush] = useState(DataValue.Wall);
 
     const loadData = useCallback((strData: string): void => {
@@ -31,7 +32,7 @@ export const Provider = ({children}: IProps) => {
                 confirmation(error.message);
             }
         }
-    }, []);
+    }, [setData]);
 
     const forEach = useCallback((func: TIterationFunc): void => {
         data.forEach((rowData: DataValue[], row: number): void => {
@@ -56,11 +57,11 @@ export const Provider = ({children}: IProps) => {
 
             return changed ? [...prevData] : prevData;
         });
-    }, []);
+    }, [setData]);
 
     const create = useCallback((width: number, height: number) => {
         setData(() => Array(height).fill(null).map(() => Array(width).fill(DataValue.Wall)));
-    }, []);
+    }, [setData]);
 
     const value = useMemo<IModel>(() => {
         return { height: data.length, width: data[0]?.length || 0, data, brush, loadData, forEach, setBrush, drawPixel, create };
