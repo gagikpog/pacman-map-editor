@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useData } from '../dataContext';
 import { Icon } from '../components/icon';
-import { normalizeMap } from '../normalize';
+import { formatMapForExport } from '../normalize/export';
 import { confirmation } from '../confirm';
 
 export const SaveButton = (props: IProps) => {
@@ -10,7 +10,7 @@ export const SaveButton = (props: IProps) => {
 
     const clickHandler = useCallback(() => {
         try {
-            const data = normalizeMap(context.data);
+            const data = formatMapForExport(context.data);
 
             const header = `${data.length} ${data[0].length}\n`;
             const content = header + data.map((row) => row.join('')).join('\n');

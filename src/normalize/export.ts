@@ -1,4 +1,4 @@
-import { DataValue } from './constants';
+import { DataValue } from '../constants';
 const TRACK_LAYER = new Set([DataValue.Track, DataValue.Bonus, DataValue.Score, DataValue.Respawn]);
 
 function isValidTrack(map: DataValue[][], row: number, col: number): boolean {
@@ -52,7 +52,7 @@ function checkRequiredItem(data: DataValue[][]): void {
 
 }
 
-export function normalizeMap(data: DataValue[][]): DataValue[][] {
+export function formatMapForExport(data: DataValue[][]): DataValue[][] {
 
     const cloned: DataValue[][] = data.map((row) => row.map((v) => v));
 

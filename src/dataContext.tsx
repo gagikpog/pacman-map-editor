@@ -1,5 +1,7 @@
 import { Dispatch, SetStateAction, createContext, useCallback, useContext, useMemo, useState } from 'react';
 import { DataValue } from './constants';
+import { formatMapFromImport } from './normalize/import';
+import { confirmation } from './confirm';
 type TIterationFunc = (row: number, col: number, value: DataValue) => void;
 export interface IModel {
     data: DataValue[][];
@@ -21,17 +23,13 @@ export const Provider = ({children}: IProps) => {
     const [brush, setBrush] = useState(DataValue.Wall);
 
     const loadData = useCallback((strData: string): void => {
-        const [, ...rows] = strData.split('\n') || [];
-        const data = rows.map((row): DataValue[] => row.trim().split('').map((value): DataValue => {
-            switch (value) {
-                case DataValue.Track:
-                case DataValue.Empty:
-                    return DataValue.Track
-                default:
-                    return value as DataValue;
+        try {
+            setData(formatMapFromImport(strData));
+        } catch (error) {
+            if (error instanceof Error) {
+                confirmation(error.message);
             }
-        }));
-        setData(data);
+        }
     }, []);
 
     const forEach = useCallback((func: TIterationFunc): void => {

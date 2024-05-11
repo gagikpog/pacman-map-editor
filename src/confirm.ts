@@ -13,7 +13,7 @@ async function resolveConfirm(): Promise<void> {
     }
 
     const script = document.createElement('script');
-    script.src = 'https://gagikpog.ru/data/libs/confirm.min3.js';
+    script.src = 'https://gagikpog.ru/data/libs/confirm.min.js';
 
     return new Promise((resolve) => {
         script.onload = () => resolve();
