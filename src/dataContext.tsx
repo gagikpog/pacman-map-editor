@@ -11,6 +11,7 @@ export interface IModel {
     setBrush: Dispatch<SetStateAction<DataValue>>;
     loadData(strData: string):  void;
     forEach(func: TIterationFunc): void;
+    create: (width: number, height: number) => void;
     drawPixel(startX: number, startY: number, value: DataValue[][]): void;
 }
 
@@ -57,9 +58,13 @@ export const Provider = ({children}: IProps) => {
         });
     }, []);
 
+    const create = useCallback((width: number, height: number) => {
+        setData(() => Array(height).fill(null).map(() => Array(width).fill(DataValue.Wall)));
+    }, []);
+
     const value = useMemo<IModel>(() => {
-        return { height: data.length, width: data[0]?.length || 0, data, brush, loadData, forEach, setBrush, drawPixel };
-    }, [data, brush, loadData, forEach, setBrush, drawPixel]);
+        return { height: data.length, width: data[0]?.length || 0, data, brush, loadData, forEach, setBrush, drawPixel, create };
+    }, [data, brush, loadData, forEach, setBrush, drawPixel, create]);
 
     return (
         <DataContext.Provider value={value}>
