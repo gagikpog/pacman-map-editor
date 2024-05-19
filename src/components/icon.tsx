@@ -10,7 +10,7 @@ interface IIconProps extends IProps {
 export const Icon = ({icon, selected, onClick, className, title, type = 'jpg', size = 16}: IIconProps) => {
     return (
         <img
-            src={`/assets/${icon}.${type}`}
+            src={`./assets/${icon}.${type}`}
             className={`tw-cursor-pointer ${ selected ? 'icon-selected' : ''} ${className || ''}`}
             alt={icon}
             width={size}
